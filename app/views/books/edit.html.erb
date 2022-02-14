@@ -3,13 +3,25 @@
        <%= flash[:notice] %>
      </div>
 <% end %>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <h1>Editing Book</h1>
 
 <%= form_with model: @book do |f| %>
 
-  <p>Title</p>
+  <p>
+  <strong>Title</strong>
+  </p>
   <%= f.text_field :title %>
-  <p>Body</p>
+  <p>
+  <strong>Body</strong>
+  </p>
   <%= f.text_area :body %>
   <p>
   <%= f.submit 'Update Book' %>
